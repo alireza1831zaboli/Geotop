@@ -1,0 +1,677 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoTop</title>
+  {% csrf_token %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'kamadatepicker.min.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'logo3.JPG' %}">
+  <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+  <script src="{% static 'kamadatepicker.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="{% static 'logo.JPG' %}" alt="logo" width="150px">
+    </div>
+    <nav>
+      <ul class="main menu">
+        <li><a href="#home">صفحه اصلی</a></li>
+        <li>
+          <a href="#work">خدمات</a>
+        </li>
+        <li><a href="#education">آموزش</a></li>
+        <li><a href="#education">استخدام</a></li>
+        <li><a href="#about us">درباره ما</a></li>
+      </ul>
+    </nav>
+    <button class="button button1">ثبت‌نام</button>
+    <button class="button button2">ورود</button>
+  </header>
+
+  <!-- introduction -->
+
+  <div class="introduction">
+    <div class="intro1">
+      <div class="intro1_logo">
+        <img src="{% static 'icons8-best-seller-94.png' %}" alt="logo">
+      </div>
+      <div class="intro1_head">
+        <h4>پرمخاطب‌ترین</h4>
+      </div>
+      <div class="intro1_text">
+        <p>ژئوتاپ برترین وبسایت نقشه‌برداری ایران</p>
+      </div>
+    </div>
+    <div class="intro2">
+      <div class="intro2_logo">
+        <img src="{% static 'icons8-land-surveying-94.png' %}" alt="logo">
+      </div>
+      <div class="intro2_head">
+        <h4>خدمات نقشه‌برداری</h4>
+      </div>
+      <div class="intro2_text">
+        <p>ارائه دهنده باکیفیت ترین خدمات در کمترین زمان</p>
+      </div>
+    </div>
+    <div class="intro3">
+      <div class="intro3_logo">
+        <img src="{% static 'vecteezy_online-man-using-laptop-man-sitting-using-laptop-man-using_19979412.png' %}"
+          alt="logo" width="70px">
+      </div>
+      <div class="intro3_head">
+        <h4>آموزش های با کیفیت</h4>
+      </div>
+      <div class="intro3_text">
+        <p>مپ اسکیل همراه شما در مسیر موفقیت با آموزش های مختلف</p>
+      </div>
+    </div>
+    <div class="intro4">
+      <div class="intro4_logo">
+        <img src="{% static 'vecteezy_emotion-focus-and-serious-working-male-worker-sitting-at_15715327.png' %}"
+          alt="logo" width="80px">
+      </div>
+      <div class="intro4_head">
+        <h4>پشتیبانی سریع</h4>
+      </div>
+      <div class="intro4_text">
+        <p>معنای واقعی پشتیبانی را تجربه کنید</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="Search">
+    <input id="Search" type="text" placeholder="Search..">
+    <button id="Download-Excel" class="Download-Excel" style="color:black ;">Download Exell</button>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="animation-container">
+      <svg width="135" height="140" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+        <rect y="10" width="15" height="120" rx="6">
+          <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;30;20;10;0;120"
+            calcMode="linear" repeatCount="indefinite" />
+          <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;55;60;65;70;10"
+            calcMode="linear" repeatCount="indefinite" />
+        </rect>
+        <rect x="30" y="10" width="15" height="120" rx="6">
+          <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;30;20;10;0;120"
+            calcMode="linear" repeatCount="indefinite" />
+          <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;55;60;65;70;10"
+            calcMode="linear" repeatCount="indefinite" />
+        </rect>
+        <rect x="60" width="15" height="140" rx="6">
+          <animate attributeName="height" begin="0s" dur="1s" values="120;110;100;90;80;70;60;50;40;30;20;10;0;120"
+            calcMode="linear" repeatCount="indefinite" />
+          <animate attributeName="y" begin="0s" dur="1s" values="10;15;20;25;30;35;40;45;50;55;60;65;70;10"
+            calcMode="linear" repeatCount="indefinite" />
+        </rect>
+        <rect x="90" y="10" width="15" height="120" rx="6">
+          <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;30;20;10;0;120"
+            calcMode="linear" repeatCount="indefinite" />
+          <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;55;60;65;70;10"
+            calcMode="linear" repeatCount="indefinite" />
+        </rect>
+        <rect x="120" y="10" width="15" height="120" rx="6">
+          <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;30;20;10;0;120"
+            calcMode="linear" repeatCount="indefinite" />
+          <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;55;60;65;70;10"
+            calcMode="linear" repeatCount="indefinite" />
+        </rect>
+      </svg>
+      <p>Downloading</p>
+    </div>
+  </div>
+
+  <div class="data_table" dir="ltr">
+    <table id="myTable"></table>
+    <br>
+  </div>
+  <div id="pagination" dir="ltr"></div>
+  <div class="add_butt">
+    <button class="add_button" onclick="togglePopupAdd()">add</button>
+  </div>
+
+
+
+  <div id="popupOverlay" class="overlay-container" dir="ltr">
+    <div class="popup-box">
+      <h2 style="color: green;">Add Form</h2>
+      <form id="person-form" class="form-container">
+        <label class="form-label" for="name">Username:</label>
+        <input class="form-input" type="text" placeholder="Enter Your Username" id="name" name="name" required>
+
+        <label class="form-label" for="BirthDate">BirthDate:</label>
+        <input class="form-input" type="text" placeholder="Enter BirthDate" id="BD" name="BD">
+
+        <label class="form-label" for="national-code" maxlength="10">Nationality code:</label>
+        <input class="form-input" type="text" required pattern="[0-9]{10}"
+          placeholder="Enter Your Nationality Code (10 digit)" id="NC" name="NC">
+
+        <label class="form-label" for="Expert">Expert</label>
+        <select id="supervisor-name" name="supervisor-name" required>
+          <option value="ali asadi">ali asadi</option>
+          <option value="reza rahimi">reza rahimi</option>
+          <option value="amir kashefi">amir kashefi</option>
+        </select>
+
+        <label class="form-label" for="province">Province:</label>
+        <select id="province" name="province" required>
+          <option value="">Select</option>
+        </select>
+
+        <label class="form-label" for="city">City:</label>
+        <select id="city" name="city" required>
+          <option value="">Select</option>
+        </select>
+
+
+        <button class="btn-submit" type="submit"> Submit </button>
+        <button class="btn-close-popup" onclick="togglePopupAdd()"> Close </button>
+      </form>
+
+    </div>
+  </div>
+
+  <div id="popupOverlayEdit" class="overlay-container" dir="ltr"> </div>
+
+
+
+
+  <div id="delete-animation" class="delete-animation">
+    <div class="popup">
+      <svg class="circle-cross" width="100" height="100" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" stroke="red" stroke-width="5" fill="none" />
+        <line x1="30" y1="30" x2="70" y2="70" stroke="red" stroke-width="5" />
+        <line x1="30" y1="70" x2="70" y2="30" stroke="red" stroke-width="5" />
+      </svg>
+      <p>User is deleted</p>
+    </div>
+  </div>
+
+
+
+  <!-- <script src="{% static 'geotop_script.js' %}"></script> -->
+  <script src="{% static 'jquery.js' %}"></script>
+  <script src="{% static 'kamadatepicker.min.js' %}"></script>
+  <script>
+    var main_data;
+    // var main_data = {
+    //     "people": [{ 'id': 17, 'name': 'saman', 'national_code': '1234567890', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 21, 'name': 'courses', 'national_code': '1234567891', 'BD': '1360/12/24', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Fars', 'city': 'Shiraz' },
+    //     { 'id': 35, 'name': 'Ali', 'national_code': '1231231231', 'BD': '1370/11/12', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Yazd', 'city': 'Yazd' },
+    //     { 'id': 38, 'name': 'saman', 'national_code': '1738266827', 'BD': '1372/04/12', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 39, 'name': 'sam', 'national_code': '1234567890', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 41, 'name': 'mohammad', 'national_code': '1231231231', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 42, 'name': 'zari', 'national_code': '1231231231', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 43, 'name': 'losi', 'national_code': '534567891', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'ali asadi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 45, 'name': 'courses', 'national_code': '1234567891', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'reza rahimi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 46, 'name': 'armin', 'national_code': '1234567891', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'amir kashefi', 'province': 'Tehran', 'city': 'Tehran' },
+    //     { 'id': 47, 'name': 'reza', 'national_code': '1234567891', 'BD': '1352/01/05', 'RD': '1403/01/05', 'MD': '1403/02/12', 'expert': 'amir kashefi', 'province': 'Tehran', 'city': 'Tehran' }], "page_count": 2
+    // };
+
+    $(document).ready(function () {
+      $('#loading').hide();
+      $('#delete-animation').hide();
+    });
+
+    function ajax_getter(i) {
+      $.ajax({
+        url: "api/" + '?page=' + i,
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (res) {
+          main_data = res;
+          data2(main_data);
+          displayTable(currentPage);
+        },
+        async: false,
+        error: function () {
+          alert("error")
+        }
+      })
+    };
+    ajax_getter(1);
+
+    function togglePopupAdd() {
+      const overlay = document.getElementById('popupOverlay');
+      overlay.classList.toggle('show');
+      if (!overlay.classList.contains('show')) {
+        ajax_getter(currentPage);
+        data2(main_data);
+        displayTable(currentPage);
+      }
+
+    };
+
+    function togglePopupEdit() {
+      const overlay = document.getElementById('popupOverlayEdit');
+      overlay.classList.remove('show');
+
+      ajax_getter(currentPage);
+      data2(main_data);
+      displayTable(currentPage);
+    };
+
+    $(document).ready(function () {
+      $('#person-form').on('submit', function (event) {
+        event.preventDefault();
+        var formData = {
+          name: $('#name').val(),
+          national_code: $('#NC').val(),
+          expert: $('#supervisor-name').val(),
+          birth_date: $('#BD').val(),
+          province: $('#province').val(),
+          city: $('#city').val(),
+        };
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+
+        $.ajax({
+          type: 'POST',
+          url: "api/",
+          headers: { 'X-CSRFToken': csrftoken },
+          data: JSON.stringify(formData),
+          contentType: 'application/json',
+          success: function (response) {
+            alert('Person added successfully!');
+            $('#person-form')[0].reset();
+          },
+          error: function (xhr, status, error) {
+            alert('Error adding person: ' + error);
+          }
+        });
+      });
+    });
+
+
+
+    // Delete functionality
+    $(document).on('click', '.delete-button', function () {
+      $('#delete-animation').show();
+      var personId = $(this).data('id');
+      var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+      $.ajax({
+        type: 'DELETE',
+        headers: { 'X-CSRFToken': csrftoken },
+        url: '/api/delete/' + personId + '/',
+        data: { person_id: personId },
+        success: function (response) {
+          // alert('Person deleted successfully!');
+          setTimeout(function () {
+            $('#delete-animation').hide();
+          }, 3000);
+          ajax_getter(currentPage);
+          data2(main_data);
+          displayTable(currentPage);
+        },
+        error: function (xhr, status, error) {
+          alert('Error deleting person: ' + error);
+        }
+      });
+    });
+
+
+    var currentPage;
+    var page_count;
+    var data;
+    function data2(main_data) {
+      currentPage = 1
+      page_count = main_data.page_count;
+      data = main_data.people;
+    };
+    data2(main_data)
+
+    function displayTable(page) {
+      const table = document.getElementById("myTable");
+      const slicedData = data;
+      // Clear existing table rows
+      table.innerHTML = `
+      <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>N.C</th>
+          <th>BD</th>
+          <th>RD</th>
+          <th>MD</th>
+          <th>Expert</th>
+          <th>Province</th>
+          <th>City</th>
+          <th>Action1</th>
+          <th>Action2<th>
+      </tr>
+  `;
+      var k = 0;
+      slicedData.forEach(item => {
+        const row = table.insertRow();
+        const indexCell = row.insertCell(0);
+        const nameCell = row.insertCell(1);
+        const NCCell = row.insertCell(2);
+        const BDCell = row.insertCell(3);
+        const RDCell = row.insertCell(4);
+        const MDCell = row.insertCell(5);
+        const expertCell = row.insertCell(6);
+        const ProvinceCell = row.insertCell(7);
+        const CityCell = row.insertCell(8);
+        const deleteCell = row.insertCell(9);
+        const editCell = row.insertCell(10);
+
+
+        const person = data.findIndex(person => person.name === item.name);
+        k += 1;
+        indexCell.innerHTML = k;
+        nameCell.innerHTML = item.name;
+        NCCell.innerHTML = item.national_code;
+        BDCell.innerHTML = item.birth_date;
+        RDCell.innerHTML = item.created_at;
+        MDCell.innerHTML = item.updated_at;
+        expertCell.innerHTML = item.expert;
+        ProvinceCell.innerHTML = item.province;
+        CityCell.innerHTML = item.city;
+        const button = document.createElement("button");
+        button.innerHTML = "delete";
+        button.classList.add("delete-button");
+        button.dataset.id = item.id;
+        deleteCell.appendChild(button);
+        const editbutton = document.createElement("button");
+        editbutton.innerHTML = "edit";
+        editbutton.classList.add("edit-button");
+        editbutton.dataset.id = item.id;
+        editCell.appendChild(editbutton);
+        // Add edit functionality
+        editbutton.addEventListener("click", function () {
+          const id = editbutton.dataset.id;
+          const person = data.find(person => person.id === parseInt(id));
+          if (person) {
+            // Open the edit popup
+            openEditPopup(person);
+          }
+        });
+      });
+      // Add new rows to the table
+
+      // Update pagination
+      updatePagination(page);
+    }
+
+    function updatePagination(currentPage) {
+      const pageCount = page_count;
+      const paginationContainer = document.getElementById("pagination");
+      paginationContainer.innerHTML = "";
+
+      for (let i = 1; i <= pageCount; i++) {
+        const pageLink = document.createElement("button");
+        pageLink.classList = "page-button";
+        pageLink.innerText = i;
+        pageLink.onclick = function () {
+          ajax_getter(i);
+          data2(main_data);
+          displayTable(i);
+
+        };
+        if (i === currentPage) {
+          pageLink.style.fontWeight = "bold";
+          pageLink.style.color = "#fc0000ff";
+        }
+        paginationContainer.appendChild(pageLink);
+        paginationContainer.appendChild(document.createTextNode(" "));
+
+      }
+    }
+
+    // Initial display
+    displayTable(currentPage);
+    // Function to open the edit popup
+    function openEditPopup(person) {
+      const popupOverlayEdit = document.getElementById('popupOverlayEdit');
+      popupOverlayEdit.classList.add('show');
+
+      popupOverlayEdit.innerHTML = `
+      <div class="popup-box">
+        <h2>Edit Form</h2>
+        <form id="edit-person-form" class="form-container">
+          <label class="form-label" for="name">Username:</label>
+          <input class="form-input" type="text" value="${person.name}" id="edit-name" name="name" required>
+
+          <label class="form-label" for="BirthDate">BirthDate:</label>
+          <input class="form-input" type="text" value="${person.birth_date}" placeholder="Enter BirthDate" id="editBD" name="BD">
+          
+          <label class="form-label" for="national-code">Nationality code:</label>
+          <input class="form-input" type="tel" value="${person.national_code}" id="edit-NC" name="NC" required pattern="[0-9]{10}">
+
+          <label class="form-label" for="Expert">Expert</label>
+          <select id="edit-supervisor-name" name="supervisor-name" required>
+            <option value="ali asadi" ${person.expert === 'ali asadi' ? 'selected' : ''}>ali asadi</option>
+            <option value="reza rahimi" ${person.expert === 'reza rahimi' ? 'selected' : ''}>reza rahimi</option>
+            <option value="amir kashefi" ${person.expert === 'amir kashefi' ? 'selected' : ''}>amir kashefi</option>
+          </select>
+
+          <label class="form-label" for="province">Province:</label>
+          <select id="edit-province" name="province" required>
+              <option value="">Select</option>
+          </select>
+
+          <label class="form-label" for="city">City:</label>
+          <select id="edit-city" name="city" required>
+              <option value="">Select</option>
+          </select>
+
+          <button class="btn-submit" type="submit"> Update <button/>
+          <button class="btn-close-popup" onclick="togglePopupEdit()"> Close </button>
+        </form>
+      </div>
+    `;
+      let optionedit = {
+        twodigit: false,
+        closeAfterSelect: true,
+        nextButtonIcon: "timeir_next.png",
+        previousButtonIcon: "timeir_prev.png",
+        buttonsColor: "red",
+        forceFarsiDigits: true,
+        markTodday: true,
+        markHolidays: true,
+        highlightSelectedDay: true,
+      }
+      kamaDatepicker("editBD", optionedit);
+      // Populate the provinces dropdown
+      const citydata = {
+        "Tehran": ["Tehran", "Shahriar", "Eslamshahr", "Robat Karim"],
+        "Isfahan": ["Isfahan", "Kashan", "Khomeini Shahr", "Najafabad"],
+        "Khorasan Razavi": ["Mashhad", "Neyshabur", "Sabzevar", "Torbat Heydarieh"],
+        "Fars": ["Shiraz", "Marvdasht", "Kazeroon", "Lar"],
+        "Mazandaran": ["Sari", "Amol", "Babol", "Qaem Shahr"],
+        "East Azerbaijan": ["Tabriz", "Maragheh", "Marand", "Ahar"],
+        "West Azerbaijan": ["Urmia", "Khoy", "Mahabad", "Miandoab"],
+        "Kerman": ["Kerman", "Rafsanjan", "Sirjan", "Bam"],
+        "Hormozgan": ["Bandar Abbas", "Minab", "Bandar Lengeh", "Qeshm"],
+        "Kermanshah": ["Kermanshah", "Eslamabad Gharb", "Javanrud", "Paveh"],
+        "Lorestan": ["Khorramabad", "Borujerd", "Aligudarz", "Dorud"],
+        "Yazd": ["Yazd", "Ardakan", "Meybod", "Taft"]
+      };
+
+      const provinceSelect = $('#edit-province');
+      const citySelect = $('#edit-city');
+
+      $.each(citydata, function (province, cities) {
+        provinceSelect.append(new Option(province, province));
+      });
+
+      // Set the current values
+      provinceSelect.val(person.province);
+      updateCities(citydata, person.province, citySelect);
+      citySelect.val(person.city);
+
+      // Update cities when province changes
+      provinceSelect.change(function () {
+        const selectedProvince = $(this).val();
+        updateCities(citydata, selectedProvince, citySelect);
+      });
+
+      // Edit functionality
+      $('#edit-person-form').on('submit', function (event) {
+        event.preventDefault();
+        var formData = {
+          name: $('#edit-name').val(),
+          national_code: $('#edit-NC').val(),
+          birth_date: $('#editBD').val(),
+          expert: $('#edit-supervisor-name').val(),
+          province: $('#edit-province').val(),
+          city: $('#edit-city').val()
+        };
+
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        var personId = person.id;
+
+        $.ajax({
+          type: 'PUT',
+          url: '/api/edit/' + personId + '/',
+          headers: { 'X-CSRFToken': csrftoken },
+          data: JSON.stringify(formData),
+          contentType: 'application/json',
+          success: function (response) {
+            alert('Person edited successfully!');
+            $('#edit-person-form')[0].reset();
+            togglePopupEdit();
+            ajax_getter(currentPage);
+          },
+          error: function (xhr, status, error) {
+            alert('Error editing person: ' + error);
+          }
+        });
+      });
+    }
+
+    function updateCities(citydata, selectedProvince, citySelect) {
+      citySelect.empty().append(new Option('Select', ''));
+      if (selectedProvince) {
+        $.each(citydata[selectedProvince], function (index, city) {
+          citySelect.append(new Option(city, city));
+        });
+      }
+    }
+
+
+    $(document).ready(function () {
+      $("#Search").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $.ajax({
+          url: "api/?search=" + value,
+          type: "GET",
+          contentType: "application/json",
+          dataType: "json",
+          success: function (res) {
+            main_data = res;
+            data2(main_data);
+            displayTable(currentPage);
+          },
+          error: function () {
+            alert("error");
+          },
+        });
+      });
+    });
+
+
+
+
+
+    $(document).ready(function () {
+      const citydata = {
+        "Tehran": ["Tehran", "Shahriar", "Eslamshahr", "Robat Karim"],
+        "Isfahan": ["Isfahan", "Kashan", "Khomeini Shahr", "Najafabad"],
+        "Khorasan Razavi": ["Mashhad", "Neyshabur", "Sabzevar", "Torbat Heydarieh"],
+        "Fars": ["Shiraz", "Marvdasht", "Kazeroon", "Lar"],
+        "Mazandaran": ["Sari", "Amol", "Babol", "Qaem Shahr"],
+        "East Azerbaijan": ["Tabriz", "Maragheh", "Marand", "Ahar"],
+        "West Azerbaijan": ["Urmia", "Khoy", "Mahabad", "Miandoab"],
+        "Kerman": ["Kerman", "Rafsanjan", "Sirjan", "Bam"],
+        "Hormozgan": ["Bandar Abbas", "Minab", "Bandar Lengeh", "Qeshm"],
+        "Kermanshah": ["Kermanshah", "Eslamabad Gharb", "Javanrud", "Paveh"],
+        "Lorestan": ["Khorramabad", "Borujerd", "Aligudarz", "Dorud"],
+        "Yazd": ["Yazd", "Ardakan", "Meybod", "Taft"]
+      };
+
+      const provinceSelect = $('#province');
+      const citySelect = $('#city');
+
+      $.each(citydata, function (province, cities) {
+        provinceSelect.append(new Option(province, province));
+      });
+
+      provinceSelect.change(function () {
+        const selectedProvince = $(this).val();
+        citySelect.empty().append(new Option('Select', ''));
+
+        if (selectedProvince) {
+          $.each(citydata[selectedProvince], function (index, city) {
+            citySelect.append(new Option(city, city));
+          });
+        }
+      });
+    });
+
+
+
+
+    let option = {
+      twodigit: false,
+      closeAfterSelect: true,
+      nextButtonIcon: "timeir_next.png",
+      previousButtonIcon: "timeir_prev.png",
+      buttonsColor: "red",
+      forceFarsiDigits: true,
+      markTodday: true,
+      markHolidays: true,
+      highlightSelectedDay: true,
+    }
+    kamaDatepicker("BD", option);
+
+
+
+    $(document).ready(function () {
+      $('#Download-Excel').on('click', function () {
+        $('#loading').show();
+
+        $.ajax({
+          url: "api/export/",
+          type: "GET",
+          contentType: "application/json",
+          dataType: "json",
+          success: function (res) {
+            const jsonData = res;
+
+            setTimeout(function () {
+              const workbook = XLSX.utils.book_new();
+              const worksheet = XLSX.utils.json_to_sheet(jsonData);
+              XLSX.utils.book_append_sheet(workbook, worksheet, 'کاربران');
+              XLSX.writeFile(workbook, 'user_data.xlsx');
+              $('#loading').hide();
+            }, 2000);
+          },
+          error: function (xhr, status, error) {
+            alert('Error Export: ' + error);
+            $('#loading').hide();
+          }
+        });
+      });
+    });
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

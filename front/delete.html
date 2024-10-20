@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Display row name on button click</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .hidden {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+      }
+    </style>
+  <script>
+    function createTable() {
+      var table = $('<table></table>');
+      for (var i = 0; i < 10; i++) {
+        var row = $('<tr></tr>');
+        row.append('<td>' + (i + 1) + '</td>');
+        row.append('<td class="hidden">Name ' + (i + 1) + '</td>');
+        row.append('<td>Country Code ' + (i + 1) + '</td>');
+        row.append('<td><button class="display-button">Display</button></td>');
+        table.append(row);
+      }
+      $('#table-container').empty().append(table);
+      $('.display-button').click(function() {
+        alert($(this).closest('tr').find('td:nth-child(2)').text());
+      });
+    }
+  </script>
+  <style>
+    button {
+      font-size: 1.1em;
+      background-color: #EBF5FF;
+      color: #4312AE;
+      border: 2px solid black;
+      box-shadow: 4px 4px 4px #999999;
+    }
+    button:hover, button:focus, button:active {
+      /* swap colors */
+      color: #EBF5FF;
+      background-color: #4312AE;
+      cursor: pointer; /* displays a hand */
+    }
+  </style>
+</head>
+<body>
+  <h2>Accessing the <i> row data of table </i> using jQuery</h2>
+  <div id="table-container"></div>
+  <button onclick="createTable()">Create Table</button>
+</body>
+</html>
